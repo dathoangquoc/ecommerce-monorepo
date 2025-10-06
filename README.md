@@ -16,10 +16,10 @@ Monorepo for an **E-commerce platform** built with:
 ```
 .
 ├── apps/
-│   ├── auth-service/        # FastAPI: authentication & users
-│   ├── catalog-service/     # FastAPI: products, categories, media
-│   ├── order-service/       # FastAPI: cart, orders, inventory
-│   ├── payment-service/     # FastAPI: Stripe integration & webhooks
+│   ├── auth_service/        # FastAPI: authentication & users
+│   ├── catalog_service/     # FastAPI: products, categories, media
+│   ├── order_service/       # FastAPI: cart, orders, inventory
+│   ├── payment_service/     # FastAPI: Stripe integration & webhooks
 │   └── web/                 # Next.js frontend (customer + admin dashboard)
 │
 ├── infra/
