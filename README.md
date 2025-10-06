@@ -16,25 +16,26 @@ Monorepo for an **E-commerce platform** built with:
 ```
 .
 ├── apps/
-│   ├── auth_service/        # FastAPI: authentication & users
-│   ├── catalog_service/     # FastAPI: products, categories, media
-│   ├── order_service/       # FastAPI: cart, orders, inventory
-│   ├── payment_service/     # FastAPI: Stripe integration & webhooks
-│   └── web/                 # Next.js frontend (customer + admin dashboard)
+│   ├── services/        
+│   │   ├── auth_service/       # FastAPI: authentication & users
+│   │   ├── catalog_service/    # FastAPI: products, categories, media
+│   │   ├── order_service/      # FastAPI: cart, orders, inventory
+│   │   └── payment_service/    # FastAPI: Stripe integration & webhooks
+│   └── web/                    # Next.js frontend 
 │
 ├── infra/
-│   ├── docker-compose.yml   # Local dev (Postgres, Redis, services)
-│   ├── Dockerfiles/         # Container configs
-│   ├── migrations/          # Shared Alembic migration logic
-│   └── terraform/           # AWS ECS + RDS + S3 infra configs
+│   ├── docker-compose.yml      # Local dev (Postgres, Redis, services)
+│   ├── Dockerfiles/            # Container configs
+│   ├── migrations/             # Shared Alembic migration logic
+│   └── terraform/              # AWS ECS + RDS + S3 infra configs
 │
 ├── tests/
-│   ├── unit/                # pytest unit tests
-│   ├── integration/         # integration tests (testcontainers-python)
-│   └── e2e/                 # Playwright/Cypress end-to-end tests
+│   ├── unit/                   # pytest unit tests
+│   ├── integration/            # integration tests (testcontainers-python)
+│   └── e2e/                    # Playwright/Cypress end-to-end tests
 │
 ├── .github/
-│   └── workflows/           # GitHub Actions CI/CD pipelines
+│   └── workflows/              # GitHub Actions CI/CD pipelines
 │
 └── README.md
 ```
@@ -53,21 +54,28 @@ Monorepo for an **E-commerce platform** built with:
 
 ```bash
 # Clone repo
-git clone git@github.com:your-org/fastapi-nextjs-shop.git
-cd fastapi-nextjs-shop
+git clone git@github.com:dathoangquoc/ecommerce-monorepo.git
+cd ecommerce-monorepo
+```
 
-# Start services
-docker compose up -d
+### Quickstart with Docker
 
-# Install backend deps
-cd apps/auth-service
-pip install -r requirements.txt
+```bash
+sudo docker compose up -d
+```
+
+### OR Run Backend and Frontend Separately
+
+```bash
+# Install backend dependencies
+cd apps/services
+uv sync
 
 # Run DB migrations
 alembic upgrade head
 
 # Start FastAPI dev server
-uvicorn main:app --reload
+uv run fastapi dev
 ```
 
 ### Running Frontend

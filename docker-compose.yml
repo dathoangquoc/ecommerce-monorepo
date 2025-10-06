@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    env_file: 
+    - .env
+    # volumes:
+    # - db-data:/var/lib/postgresql
+
+  backend:
+    build:
+      context: ./apps/services
+    ports:
+      - 127.0.0.1:8000:8000
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  # frontend:
+
+# volumes:
+#   db-data:
