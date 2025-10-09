@@ -10,6 +10,7 @@ class Item(BaseModel):
 class User(BaseModel):
     username: str
     email: str | None = None
+    hashed_password: str | None = None
 
 class Token(BaseModel):
     access_token: str
