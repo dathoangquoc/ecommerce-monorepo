@@ -40,6 +40,28 @@ Monorepo for an **E-commerce platform** built with:
 └── README.md
 ```
 
+```
+.
+├── apps
+│   ├── api
+│   │   ├── src
+│   │   │   ├── auth
+│   │   │   │   ├── config.py           # Local configs
+│   │   │   │   ├── dependencies.py     # FastAPI dependency functions
+│   │   │   │   ├── models.py           # SQLAlchemy schemas
+│   │   │   │   ├── router.py           # FastAPI router
+│   │   │   │   ├── schemas.py          # Pydantic models
+│   │   │   │   ├── service.py          # Business logic
+│   │   │   │   └── utils.py            # Low-level utilities
+│   │   │   ├── catalog
+│   │   │   ├── order
+│   │   │   └── payment
+│   │   ├── tests
+│   │   │   └── auth
+│   │   │       └── test_utils.py
+│   └── web
+├── infra
+```
 ---
 
 ## 🌱 Local Development
