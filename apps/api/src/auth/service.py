@@ -6,15 +6,6 @@ from .models import Token
 from .utils import verify_password, create_access_token
 
 
-user_db = {
-    "001": {
-        "username": "john",
-        "email": "john@company.com",
-        "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$TFiZFuW0blBaugPq0bvlbQ$Q1Yp0gitfUq4EKfYYdXG5f1Zf0Abn6OkfzSNORfOZsk",
-    }
-}
-
-
 async def register_user():
     pass
 
