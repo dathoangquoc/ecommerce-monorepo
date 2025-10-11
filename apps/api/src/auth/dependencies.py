@@ -4,7 +4,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jwt import InvalidTokenError
 
-from auth import models
+from . import models
 from .utils import decode_token
 from .service import get_user_by_id
 
