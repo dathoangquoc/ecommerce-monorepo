@@ -1,7 +1,9 @@
 services:
-  postgres:
+  db:
     image: postgres:18-alpine
-    container_name: postgres
+    container_name: db
+    ports:
+    - "5432:5432"
     env_file: 
     - .env
     # volumes:
@@ -9,12 +11,12 @@ services:
 
   backend:
     build:
-      context: ./apps/services
+      context: ./apps/api
     container_name: backend
     ports:
-      - 127.0.0.1:8000:8000
+      - "8000:8000"
     depends_on:
-      - postgres
+      - db
     env_file:
       - .env
 
@@ -23,9 +25,9 @@ services:
     #   context: ./apps/web
     # container_name: frontend
     # ports:
-    #   - 127.0.0.1:3000:3000
+    #   - "3000:3000"
     # depends_on:
-    #   - postgres
+    #   - backend
     # env_file:
     #   - .env
 

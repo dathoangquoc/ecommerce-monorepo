@@ -16,36 +16,9 @@ Monorepo for an **E-commerce platform** built with:
 ```
 .
 ├── apps/
-│   ├── services/        
-│   │   ├── auth_service/       # FastAPI: authentication & users
-│   │   ├── catalog_service/    # FastAPI: products, categories, media
-│   │   ├── order_service/      # FastAPI: cart, orders, inventory
-│   │   └── payment_service/    # FastAPI: Stripe integration & webhooks
-│   └── web/                    # Next.js frontend 
-│
-├── infra/
-│   ├── docker-compose.yml      # Local dev (Postgres, Redis, services)
-│   ├── Dockerfiles/            # Container configs
-│   ├── migrations/             # Shared Alembic migration logic
-│   └── terraform/              # AWS ECS + RDS + S3 infra configs
-│
-├── tests/
-│   ├── unit/                   # pytest unit tests
-│   ├── integration/            # integration tests (testcontainers-python)
-│   └── e2e/                    # Playwright/Cypress end-to-end tests
-│
-├── .github/
-│   └── workflows/              # GitHub Actions CI/CD pipelines
-│
-└── README.md
-```
-
-```
-.
-├── apps
-│   ├── api
-│   │   ├── src
-│   │   │   ├── auth
+│   ├── api/
+│   │   ├── src/
+│   │   │   ├── auth/
 │   │   │   │   ├── config.py           # Local configs
 │   │   │   │   ├── dependencies.py     # FastAPI dependency functions
 │   │   │   │   ├── models.py           # SQLAlchemy schemas
@@ -53,15 +26,26 @@ Monorepo for an **E-commerce platform** built with:
 │   │   │   │   ├── schemas.py          # Pydantic models
 │   │   │   │   ├── service.py          # Business logic
 │   │   │   │   └── utils.py            # Low-level utilities
-│   │   │   ├── catalog
-│   │   │   ├── order
-│   │   │   └── payment
-│   │   ├── tests
-│   │   │   └── auth
+│   │   │   ├── catalog/
+│   │   │   ├── order/
+│   │   │   └── payment/
+│   │   ├── tests/
+│   │   │   └── auth/
 │   │   │       └── test_utils.py
 │   └── web
-├── infra
+│
+├── infra/
+│   ├── docker-compose.yml      # Local dev (Postgres, Redis, services)
+│   ├── Dockerfiles/            # Container configs
+│   ├── migrations/             # Shared Alembic migration logic
+│   └── terraform/              # AWS ECS + RDS + S3 infra configs
+│
+├── .github/
+│   └── workflows/              # GitHub Actions CI/CD pipelines
+│
+└── README.md
 ```
+
 ---
 
 ## 🌱 Local Development
@@ -89,6 +73,9 @@ sudo docker compose up -d
 ### OR Run Backend and Frontend Separately
 
 ```bash
+# Start the DB container
+sudo docker compose up db
+
 # Install backend dependencies
 cd apps/services
 uv sync
