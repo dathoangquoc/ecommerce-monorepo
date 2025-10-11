@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from models import Item
+from .models import Item
 
 router = APIRouter(prefix="/catalog")
 

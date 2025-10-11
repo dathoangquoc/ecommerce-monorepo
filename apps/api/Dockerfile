@@ -4,7 +4,7 @@ FROM python:3.12-slim
 COPY --from=ghcr.io/astral-sh/uv:0.8.23 /uv /uvx /bin/
 
 ENV PATH="/bin:${PATH}"
-WORKDIR /services
+WORKDIR /api
 
 # Copy project files but ignore host virtualenvs (see .dockerignore)
 COPY . .

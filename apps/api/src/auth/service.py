@@ -12,7 +12,7 @@ from jwt.exceptions import InvalidTokenError
 
 from pwdlib import PasswordHash
 
-from models import User, Token, TokenData
+from .models import User, Token, TokenData
 
 # Load env
 load_dotenv(".env")
