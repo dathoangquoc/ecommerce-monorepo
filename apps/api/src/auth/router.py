@@ -15,13 +15,13 @@ async def register_user(user_in: schemas.User):
 
 
 @router.post("/login")
-async def login_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):        
+async def login_user(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     return service.login_user(form_data)
 
 
 @router.get("/me")
 def read_me(
-    current_user: Annotated[schemas.User, Depends(dependencies.get_current_user)]
+    current_user: Annotated[schemas.User, Depends(dependencies.get_current_user)],
 ):
     return current_user
 

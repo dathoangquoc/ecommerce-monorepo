@@ -10,7 +10,7 @@ user_db = {
     "001": {
         "username": "john",
         "email": "john@company.com",
-        "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$TFiZFuW0blBaugPq0bvlbQ$Q1Yp0gitfUq4EKfYYdXG5f1Zf0Abn6OkfzSNORfOZsk", 
+        "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$TFiZFuW0blBaugPq0bvlbQ$Q1Yp0gitfUq4EKfYYdXG5f1Zf0Abn6OkfzSNORfOZsk",
     }
 }
 
@@ -20,22 +20,22 @@ async def register_user():
 
 
 async def get_user_by_id(id: str):
-    return  user_db[id]
+    return user_db[id]
 
 
 def authenticate_user(user_id: str, password: str):
     user = get_user_by_id(user_id)
-    
+
     # Check if user is in DB
     if not user:
         return None
-    
+
     # Check if password matches the hash
     if verify_password(plain=password, hashed=user.get("hashed_password")):
         return user
-    
+
     return None
-    
+
 
 async def login_user(form_data: OAuth2PasswordRequestForm):
     # Authenticate user
@@ -52,8 +52,3 @@ async def login_user(form_data: OAuth2PasswordRequestForm):
         access_token=access_token,
         token_type="bearer",
     )
-
-
-
-
-
