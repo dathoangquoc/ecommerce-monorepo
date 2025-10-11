@@ -2,13 +2,19 @@ from pydantic import BaseModel
 
 
 class User(BaseModel):
+    id: str
     username: str
-    email: str | None = None
-    hashed_password: str | None = None
+    email: str
+    hashed_password: str
+
+
+class UserIn(BaseModel):
+    pass
+
+
+class UserOut(BaseModel):
+    pass
+
 
 class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class TokenData(BaseModel):
-    username: str | None = None
+    pass
