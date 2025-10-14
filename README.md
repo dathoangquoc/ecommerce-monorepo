@@ -90,9 +90,9 @@ uv run fastapi dev
 ### Running Frontend
 
 ```bash
-cd apps/web
-npm install
-npm run dev
+cd apps/web/src
+bun install
+bun run dev
 ```
 
 ---
