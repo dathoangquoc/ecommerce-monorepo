@@ -12,4 +12,4 @@ app.include_router(catalog_router)
 
 @app.get("/")
 async def read_root():
-    return {"Hello": "World"}
+    return "Hello from FastAPI"

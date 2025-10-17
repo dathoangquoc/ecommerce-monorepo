@@ -70,31 +70,6 @@ cd ecommerce-monorepo
 sudo docker compose up -d
 ```
 
-### OR Run Backend and Frontend Separately
-
-```bash
-# Start the DB container
-sudo docker compose up db
-
-# Install backend dependencies
-cd apps/services
-uv sync
-
-# Run DB migrations
-alembic upgrade head
-
-# Start FastAPI dev server
-uv run fastapi dev
-```
-
-### Running Frontend
-
-```bash
-cd apps/web/src
-bun install
-bun run dev
-```
-
 ---
 
 ## 🌳 Branching Strategy
