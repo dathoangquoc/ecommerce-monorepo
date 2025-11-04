@@ -17,5 +17,5 @@ async def read_catalog(service: CatalogService = Depends(), limit: int = 10):
 
 
 @router.get("/{product_id}", response_model=ProductRead)
-async def read_product(service: CatalogService, product: ProductRead):
-    return await service.read_product(product)
+async def read_product(product_id: str, service: CatalogService = Depends()):
+    return await service.read_product(product_id)

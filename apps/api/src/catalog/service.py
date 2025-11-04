@@ -19,8 +19,8 @@ class CatalogService:
     async def read_catalog(self):
         return await self.repo.read_all()
     
-    async def read_product(self, product: ProductRead):
-        return await self.repo.read(product)
+    async def read_product(self, product_id: str):
+        return await self.repo.read(str)
     
     async def create_product(self, product: ProductCreate):
         raise await self.repo.create(product)

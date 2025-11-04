@@ -18,8 +18,8 @@ class ProductRepository:
         result = await self.session.execute(select(Product))
         return result
     
-    async def read(self, product: Product):
-        result = await self.session.get(Product, product.id)
+    async def read(self, product_id: str):
+        result = await self.session.get(Product, product_id)
         return result
     
     async def update(self, product: Product):

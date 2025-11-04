@@ -3,7 +3,9 @@ Database initialization, seed data, cleanup scripts.
 """
 
 from .base import Base
-from .engine import engine
+from .engine import session_maker
 
-def init_db():
-    Base.metadata.create_all(engine)
+
+async def init_db():
+    async with session_maker() as session:
+        pass

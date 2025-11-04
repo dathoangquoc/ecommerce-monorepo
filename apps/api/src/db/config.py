@@ -14,5 +14,3 @@ class DBSettings(BaseSettings):
     PORT: int
     DB_NAME: str
 
-
-settings = DBSettings()
