@@ -21,14 +21,15 @@ Monorepo for an **E-commerce platform** built with:
 │   │   │   ├── auth/
 │   │   │   │   ├── config.py           # Local configs
 │   │   │   │   ├── dependencies.py     # FastAPI dependency functions
-│   │   │   │   ├── models.py           # SQLAlchemy schemas
+│   │   │   │   ├── models.py           # Pydantic models
 │   │   │   │   ├── router.py           # FastAPI router
-│   │   │   │   ├── schemas.py          # Pydantic models
+│   │   │   │   ├── schemas.py          # SQLAlchemy schemas
 │   │   │   │   ├── service.py          # Business logic
 │   │   │   │   └── utils.py            # Low-level utilities
 │   │   │   ├── catalog/
 │   │   │   ├── order/
-│   │   │   └── payment/
+│   │   │   ├── payment/
+│   │   │   └── db/
 │   │   ├── tests/
 │   │   │   └── auth/
 │   │   │       └── test_utils.py

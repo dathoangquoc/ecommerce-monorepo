@@ -1,7 +1,20 @@
+"""
+Pydantic models for I/O validation
+"""
+
 from pydantic import BaseModel
 
 
-class Item(BaseModel):
+class ProductCreate(BaseModel):
     name: str
     price: float
-    is_available: bool
+    description: str
+    stock_count: int
+
+
+class ProductRead(BaseModel):
+    id: str
+    name: str
+    price: float
+    description: str
+    stock_count: int

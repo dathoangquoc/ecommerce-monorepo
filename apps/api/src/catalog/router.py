@@ -1,16 +1,20 @@
+"""
+FastAPI endpoints
+"""
 from fastapi import APIRouter
 
-from .models import Item
+from .models import ProductCreate, ProductRead
+from .service import CatalogService
 
 
 router = APIRouter(prefix="/catalog")
 
 
 @router.get("/")
-def read_catalog(limit: int = 10):
+def read_catalog(service: CatalogService, limit: int = 10):
     return "All items here"
 
 
-@router.get("/{item_id}", response_model=Item)
-def read_item(item_id: str):
-    return {"item_id": item_id}
+@router.get("/{product_id}", response_model=ProductRead)
+def read_product(service: CatalogService, product_id: str):
+    return {"product_id": product_id}
