@@ -9,7 +9,7 @@ class ProductCreate(BaseModel):
     name: str
     price: float
     description: str
-    stock_count: int
+    count: int
 
 
 class ProductRead(BaseModel):
@@ -17,4 +17,4 @@ class ProductRead(BaseModel):
     name: str
     price: float
     description: str
-    stock_count: int
+    count: int

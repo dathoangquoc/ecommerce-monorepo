@@ -1,7 +1,8 @@
 """
 FastAPI endpoints
 """
-from fastapi import APIRouter
+
+from fastapi import APIRouter, Depends
 
 from .models import ProductCreate, ProductRead
 from .service import CatalogService
@@ -10,11 +11,11 @@ from .service import CatalogService
 router = APIRouter(prefix="/catalog")
 
 
-@router.get("/")
-def read_catalog(service: CatalogService, limit: int = 10):
-    return "All items here"
+@router.get("/", response_model=list[ProductRead])
+async def read_catalog(service: CatalogService = Depends(), limit: int = 10):
+    return await service.read_catalog()
 
 
 @router.get("/{product_id}", response_model=ProductRead)
-def read_product(service: CatalogService, product_id: str):
-    return {"product_id": product_id}
+async def read_product(service: CatalogService, product: ProductRead):
+    return await service.read_product(product)
