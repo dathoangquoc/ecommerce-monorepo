@@ -8,7 +8,7 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ..db.session import get_db
-from .models import ProductCreate, ProductRead
+from .models import ProductCreate, ProductUpdate
 from .repositories import ProductRepository
 
 
@@ -20,7 +20,10 @@ class CatalogService:
         return await self.repo.read_all()
     
     async def read_product(self, product_id: str):
-        return await self.repo.read(str)
+        return await self.repo.read(int(product_id))
     
     async def create_product(self, product: ProductCreate):
-        raise await self.repo.create(product)
+        return await self.repo.create(product)
+    
+    async def update_product(self, product: ProductUpdate):
+        return await self.repo.update(product)
