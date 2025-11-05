@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image"
 
 import {
@@ -9,6 +11,8 @@ import {
   ItemTitle,
 } from "@/components/ui/item"
 
+import { Button } from "@/components/ui/button"
+import { MouseEventHandler, useState } from "react"
 
 const products = [
     {
@@ -37,12 +41,33 @@ const products = [
     },
 ]
 
-export default function Page() {    
+interface Product {
+    id: string;
+    name: string;
+    image: string;
+    price: number
+    description: string;
+    count: number
+}
+
+export default function Page() {
+    const [cart, setCart] = useState<Product[]>([]);
+
+    function handleAddToCart(product: Product) {
+        setCart((prevCart) => [...prevCart, product])
+    }
+
     return (
-        <div className="flex w-full max-w-xl flex-col gap-6">
+        <main className="flex w-full max-w-xl flex-col gap-6">
+            <p>
+                {cart.length > 0
+                    ? cart.map((product) => product.name).join(", ")
+                    : "Cart is empty"
+                }
+            </p>
             <ItemGroup className="grid grid-cols-3 gap-4">
                 {products.map((product) => (
-                <Item key={product.name} variant="outline">
+                <Item key={product.id} variant="outline">
                     <ItemHeader>
                     <Image
                         src={product.image}
@@ -53,12 +78,13 @@ export default function Page() {
                     />
                     </ItemHeader>
                     <ItemContent>
-                    <ItemTitle>{product.name}</ItemTitle>
-                    <ItemDescription>{product.description}</ItemDescription>
+                        <ItemTitle>{product.name}</ItemTitle>
+                        <ItemDescription>{product.description}</ItemDescription>
                     </ItemContent>
+                        <Button onClick={() => handleAddToCart(product)}>Add to Cart</Button>
                 </Item>
                 ))}
             </ItemGroup>
-        </div>
+        </main>
     )
 }
