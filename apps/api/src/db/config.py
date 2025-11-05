@@ -8,9 +8,8 @@ class DBSettings(BaseSettings):
         extra="ignore",
     )
 
-    USERNAME: str
+    USER: str
     PASSWORD: str
     HOST: str
     PORT: int
-    DB_NAME: str
 

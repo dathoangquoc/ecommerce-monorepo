@@ -13,7 +13,7 @@ class ProductCreate(BaseModel):
 
 
 class ProductRead(BaseModel):
-    id: str
+    id: int
     name: str
     price: float
     description: str

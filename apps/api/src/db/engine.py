@@ -11,13 +11,12 @@ settings = DBSettings()
 
 url = URL.create(
     drivername="postgresql+asyncpg",
-    username=settings.USERNAME,
+    username=settings.USER,
     password=settings.PASSWORD,
     host=settings.HOST,
     port=settings.PORT,
-    database=settings.DB_NAME
 )
 
-engine = create_async_engine(url, echo=True)
+engine = create_async_engine(url, echo=False)
 
 session_maker = async_sessionmaker(engine, expire_on_commit=False)

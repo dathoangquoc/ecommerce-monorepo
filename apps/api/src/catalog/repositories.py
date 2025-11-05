@@ -16,7 +16,7 @@ class ProductRepository:
 
     async def read_all(self):
         result = await self.session.execute(select(Product))
-        return result
+        return result.scalars().all()
     
     async def read(self, product_id: str):
         result = await self.session.get(Product, product_id)
