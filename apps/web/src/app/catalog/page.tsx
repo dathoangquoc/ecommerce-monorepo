@@ -1,5 +1,8 @@
 'use client'
 
+import Product from "@/types/product"
+import { CartProduct } from "@/app/catalog/CartContext"
+
 import Image from "next/image"
 
 import {
@@ -12,7 +15,12 @@ import {
 } from "@/components/ui/item"
 
 import { Button } from "@/components/ui/button"
-import { MouseEventHandler, useState } from "react"
+import { MouseEventHandler, useReducer, useState } from "react"
+import { Filter } from "lucide-react"
+
+import { useContext } from "react"
+import { UserContext } from "../UserContext"
+import { useCart, useCartDispatch } from "./CartContext"
 
 const products = [
     {
@@ -29,7 +37,7 @@ const products = [
         "image": "/next.svg",
         "price": 200,
         "description": "Lorem ipsum",
-        "count": 2
+        "count": 1
     },
     {
         "id": "003",
@@ -37,37 +45,49 @@ const products = [
         "image": "/next.svg",
         "price": 300,
         "description": "Lorem ipsum",
-        "count": 3
+        "count": 1
     },
 ]
 
-interface Product {
-    id: string;
-    name: string;
-    image: string;
-    price: number
-    description: string;
-    count: number
-}
 
 export default function Page() {
-    const [cart, setCart] = useState<Product[]>([]);
+    const user = useContext(UserContext);
+    const cart = useCart();
+    const cartDispatch = useCartDispatch();
 
-    function handleAddToCart(product: Product) {
-        setCart((prevCart) => [...prevCart, product])
+    function handleAddToCart(product: CartProduct) {
+        cartDispatch({
+            type: "added_item",
+            product: product
+        })
+    }
+
+    function handleRemoveFromCart(product: CartProduct) {
+        cartDispatch({
+            type: "removed_item",
+            product: product
+        })
     }
 
     return (
         <main className="flex w-full max-w-xl flex-col gap-6">
-            <p>
-                {cart.length > 0
-                    ? cart.map((product) => product.name).join(", ")
+            <h1>Current User: {user.name}</h1>
+            <ul>
+                {cart.length > 0 ?
+                    cart.map((product: CartProduct) => (
+                        <li key={product.id}>
+                            {product.name} | {product.count}
+                            <button onClick={() => {
+                                handleRemoveFromCart(product)
+                            }}> Remove </button>
+                        </li>
+                    ))
                     : "Cart is empty"
                 }
-            </p>
+            </ul>
             <ItemGroup className="grid grid-cols-3 gap-4">
                 {products.map((product) => (
-                <Item key={product.id} variant="outline">
+                    <Item key={product.id} variant="outline">
                     <ItemHeader>
                     <Image
                         src={product.image}
@@ -75,7 +95,7 @@ export default function Page() {
                         width={128}
                         height={128}
                         className="aspect-square w-full rounded-sm object-cover"
-                    />
+                        />
                     </ItemHeader>
                     <ItemContent>
                         <ItemTitle>{product.name}</ItemTitle>
