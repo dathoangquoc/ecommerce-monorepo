@@ -1,5 +1,3 @@
-import './globals.css'
-
 import {
   Field,
   FieldDescription,
@@ -12,13 +10,6 @@ import { Button } from "@/components/ui/button"
 
 export default async function Page() {
   let message = "API offline..."
-
-  // try {
-  //   const data = await fetch("http://127.0.0.1:8000")
-  //   message = await data.json()
-  // } catch (error) {
-  //   console.log(error)
-  // }
 
   return (
     <main className='mx-auto max-w-6xl p-5 border'>

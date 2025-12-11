@@ -71,7 +71,7 @@ export default function Page() {
 
     return (
         <main className="flex w-full max-w-xl flex-col gap-6">
-            <h1>Current User: {user.name}</h1>
+            <h1 className="text-red-600">Current User: {user.name}</h1>
             <ul>
                 {cart.length > 0 ?
                     cart.map((product: CartProduct) => (

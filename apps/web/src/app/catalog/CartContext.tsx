@@ -14,7 +14,7 @@ type CartAction =
 const CartContextValue = createContext<CartProduct[]>([]);
 const CartDispatchContext = createContext<React.Dispatch<CartAction>>(() => {});
 
-export function CartProvider({ children }: { children: ReactNode}) {
+export function CartProvider({ children }: { children: ReactNode }) {
     const [cart, cartDispatch] = useReducer(cartReducer, []);
     
     return (
