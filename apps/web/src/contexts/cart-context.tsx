@@ -1,9 +1,7 @@
-import { createContext, useContext, ReactNode, useReducer } from "react";
-import Product from "@/types/product";
+'use client'
 
-export type CartProduct = Product & {
-    count: number
-}
+import { createContext, useContext, ReactNode, useReducer } from "react";
+import { CartProduct } from "@/types/product";
 
 type CartAction = 
     | {type: "added_item"; product: CartProduct} 

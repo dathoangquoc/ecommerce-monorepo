@@ -1,7 +1,4 @@
-'use client'
-
-import Product from "@/types/product"
-import { CartProduct } from "@/app/catalog/CartContext"
+import { CartProduct } from "@/types/product"
 
 import Image from "next/image"
 
@@ -15,12 +12,13 @@ import {
 } from "@/components/ui/item"
 
 import { Button } from "@/components/ui/button"
-import { MouseEventHandler, useReducer, useState } from "react"
-import { Filter } from "lucide-react"
 
 import { useContext } from "react"
-import { UserContext } from "../UserContext"
-import { useCart, useCartDispatch } from "./CartContext"
+import { UserContext } from "../../contexts/user-context"
+
+import { toast } from "sonner"
+
+import { useCartDispatch } from "@/contexts/cart-context"
 
 const products = [
     {
@@ -51,18 +49,19 @@ const products = [
 
 
 export default function Page() {
+    // FIXME
     const user = useContext(UserContext);
-    const cart = useCart();
     const cartDispatch = useCartDispatch();
 
-    function handleAddToCart(product: CartProduct) {
+    const handleAddToCart=(product: CartProduct) => {
+        toast.success(`+1 ${product.name}`)
         cartDispatch({
             type: "added_item",
             product: product
         })
     }
-
-    function handleRemoveFromCart(product: CartProduct) {
+    const handleRemoveFromCart=(product: CartProduct) => {
+        toast.success(`-1 ${product.name}`)
         cartDispatch({
             type: "removed_item",
             product: product
@@ -70,21 +69,8 @@ export default function Page() {
     }
 
     return (
-        <main className="flex w-full max-w-xl flex-col gap-6">
-            <h1 className="text-red-600">Current User: {user.name}</h1>
-            <ul>
-                {cart.length > 0 ?
-                    cart.map((product: CartProduct) => (
-                        <li key={product.id}>
-                            {product.name} | {product.count}
-                            <button onClick={() => {
-                                handleRemoveFromCart(product)
-                            }}> Remove </button>
-                        </li>
-                    ))
-                    : "Cart is empty"
-                }
-            </ul>
+        <main className="flex w-full max-w-xl flex-col gap-6 p-6">
+            <h1>Current User: {user.name}</h1>
             <ItemGroup className="grid grid-cols-3 gap-4">
                 {products.map((product) => (
                     <Item key={product.id} variant="outline">
